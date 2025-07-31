@@ -1,0 +1,120 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Définition des gradients et styles modernes -->
+  <defs>
+    <!-- Gradient pour les nœuds -->
+    <radialGradient id="nodeGradient" cx="30%" cy="30%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Gradient pour le nœud racine -->
+    <radialGradient id="rootGradient" cx="30%" cy="30%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Gradient pour le nœud terminal -->
+    <radialGradient id="terminalGradient" cx="30%" cy="30%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Filtre d'ombre -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+    
+    <!-- Flèches modernes -->
+    <marker id="arrowhead-solid" markerWidth="8" markerHeight="6" 
+            refX="7" refY="3" orient="auto">
+      <path d="M 0 0 L 8 3 L 0 6 z" fill="url(#lineGradient)" opacity="0.8"/>
+    </marker>
+    <marker id="arrowhead-dashed" markerWidth="8" markerHeight="6" 
+            refX="7" refY="3" orient="auto">
+      <path d="M 0 0 L 8 3 L 0 6 z" fill="url(#dashedLineGradient)" opacity="0.8"/>
+    </marker>
+    
+    <!-- Gradients pour les lignes -->
+    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <linearGradient id="dashedLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#feca57;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <style>
+      .node {
+        filter: url(#shadow);
+        transition: all 0.3s ease;
+      }
+      .node:hover {
+        transform: scale(1.1);
+      }
+      .node-text {
+        fill: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        text-anchor: middle;
+        dominant-baseline: middle;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      }
+      .solid-line {
+        stroke: url(#lineGradient);
+        stroke-width: 3;
+        marker-end: url(#arrowhead-solid);
+        opacity: 0.8;
+      }
+      .dashed-line {
+        stroke: url(#dashedLineGradient);
+        stroke-width: 3;
+        stroke-dasharray: 10,6;
+        marker-end: url(#arrowhead-dashed);
+        opacity: 0.85;
+      }
+    </style>
+  </defs>
+  
+  <!-- Niveau 1 - Nœud racine -->
+  <circle cx="300" cy="70" r="28" fill="url(#rootGradient)" class="node"/>
+  <text x="300" y="70" class="node-text">N1</text>
+  
+  <!-- Niveau 2 - Nœuds intermédiaires -->
+  <!-- Nœud 2.1 (trait plein) -->
+  <circle cx="150" cy="190" r="24" fill="url(#nodeGradient)" class="node"/>
+  <text x="150" y="190" class="node-text">N2.1</text>
+  
+  <!-- Nœud 2.2 (trait plein) -->
+  <circle cx="250" cy="190" r="24" fill="url(#nodeGradient)" class="node"/>
+  <text x="250" y="190" class="node-text">N2.2</text>
+  
+  <!-- Nœud 2.3 (pointillés) -->
+  <circle cx="350" cy="190" r="24" fill="url(#nodeGradient)" class="node"/>
+  <text x="350" y="190" class="node-text">N2.3</text>
+  
+  <!-- Nœud 2.4 (pointillés) -->
+  <circle cx="450" cy="190" r="24" fill="url(#nodeGradient)" class="node"/>
+  <text x="450" y="190" class="node-text">N2.4</text>
+  
+  <!-- Niveau 3 - Nœud terminal -->
+  <circle cx="300" cy="330" r="28" fill="url(#terminalGradient)" class="node"/>
+  <text x="300" y="330" class="node-text">N3</text>
+  
+  <!-- Connexions du niveau 1 vers niveau 2 -->
+  <!-- Vers N2.1 et N2.2 (traits pleins) -->
+  <line x1="282" y1="92" x2="168" y2="168" class="solid-line"/>
+  <line x1="288" y1="95" x2="258" y2="168" class="solid-line"/>
+  
+  <!-- Vers N2.3 et N2.4 (pointillés) -->
+  <line x1="312" y1="95" x2="342" y2="168" class="dashed-line"/>
+  <line x1="318" y1="92" x2="432" y2="168" class="dashed-line"/>
+  
+  <!-- Connexions du niveau 2 vers niveau 3 -->
+  <line x1="168" y1="212" x2="282" y2="308" class="solid-line"/>
+  <line x1="258" y1="212" x2="288" y2="308" class="solid-line"/>
+  <line x1="342" y1="212" x2="312" y2="308" class="dashed-line"/>
+  <line x1="432" y1="212" x2="318" y2="308" class="dashed-line"/>
+</svg>
